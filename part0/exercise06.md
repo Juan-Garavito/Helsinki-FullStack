@@ -3,26 +3,10 @@ sequenceDiagram
     participant server
 
 
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
     activate server
-    server-->>browser: HTML document
+    server-->>browser: Response HTTP 201 Created
     deactivate server
 
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
-    activate server
-    server-->>browser: the css file
-    deactivate server
-
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
-    activate server
-    server-->>browser: the JavaScript file
-    deactivate server
-
-    Note right of browser: The browser execute call at server for get data.json
-
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
-    activate server
-    server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
-    deactivate server
-
-    Note right of browser: The browser starts rendering a list of notes in the DOM.
+    Note right of browser: The browser doesn't refresh for adding new note on the DOM.
+    Note right of browser: The Javascript code adds a new note using the browser's API.
